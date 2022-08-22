@@ -6,8 +6,8 @@ const puppeteer = require("puppeteer");
 const filepath = path.resolve(__dirname, "images");
 
 (async () => {
-  const url =
-    "https://www.daraz.com.np/catalog/?q=iphone&_keyori=ss&from=input&spm=a2a0e.11779170.search.go.63792d2b25WZ2f";
+  const url = "";
+  // "https://www.daraz.com.np/catalog/?q=iphone&_keyori=ss&from=input&spm=a2a0e.11779170.search.go.63792d2b25WZ2f";
   let browser = await puppeteer.launch({
     headless: false,
     defaultViewport: null,
@@ -15,9 +15,9 @@ const filepath = path.resolve(__dirname, "images");
   let page = await browser.newPage();
   await page.goto(url);
 
-  let productName = await page.$$eval('div[class="title--wFj93"]', (names) =>
-    names.map((name) => name.innerText)
-  );
+  // let productName = await page.$$eval('div[class="title--wFj93"]', (names) =>
+  //   names.map((name) => name.innerText)
+  // );
 
   const productImage = await page.$$eval(".mainPic--ehOdr a img[src]", (imgs) =>
     imgs.map((img) => img.getAttribute("src"))
@@ -27,13 +27,6 @@ const filepath = path.resolve(__dirname, "images");
 
   function download(url, filepath, callback) {
     const filename = path.basename(url);
-    // const filename = path.join(
-    //   productName
-    //     .map((value) => {
-    //       return value;
-    //     })
-    //     .join("")
-    // );
 
     const req = https.get(url, function (res) {
       const fileStream = fs.createWriteStream(path.resolve(filepath, filename));

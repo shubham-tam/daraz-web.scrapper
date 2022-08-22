@@ -16,7 +16,7 @@ const fs = require("fs/promises");
 
   // Replace iphone with any product you want available in daraz (will give the results of all the product on page 1)
 
-  await page.$eval("input[name=q]", (el) => (el.value = "iphone"));
+  await page.$eval("input[name=q]", (el) => (el.value = "gym"));
 
   const searcBox = await page.$('button[class="search-box__button--1oH7"]');
   await searcBox.evaluate((b) => b.click());
@@ -49,14 +49,6 @@ const fs = require("fs/promises");
   // saves the product price in price.txt
 
   fs.writeFile("price.txt", price);
-
-  // var result = productName
-  //   .map((value, id) => {
-  //     return [value, productPrice[id]] + "\n";
-  //   })
-  //   .join("\r\n");
-
-  // console.log(result);
 
   fs.writeFile(
     "product.txt",
